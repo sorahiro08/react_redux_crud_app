@@ -1,21 +1,29 @@
 
 function App() {
-  const greeting = "Hi! Tom!";
-  const dom = <h1 className="foo">{greeting}</h1>;
+  const profiles = [
+    {name: "Taro", age: 10},
+    {name: "Hana", age: 5},
+    {name: "NoName"},
+  ]
   return (
     <>
-      {dom}
-      <label htmlFor="bar">bar</label>
-      <input type="text" onChange={ () => {console.log("I am Changed!")} } />
-      <Cat />
-      <Cat />
-      <Cat />
+      {
+        profiles.map((pf, i) => {
+          return (
+            <User key={i} name={pf.name} age={pf.age} />
+          );
+        })
+      }
     </>
   );
 }
 
-const Cat = () => {
-  return <div>Meow!</div>;
+const User = (props) => {
+  return <div>Hi, I am {props.name}, and {props.age} years old!</div>;
 };
+
+User.defaultProps = {
+  age: 1,
+}
 
 export default App;
